@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Архив вечеринки | DRIP PARTY</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;800;900&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0a0912;
+      --bg-soft: #120f1e;
+      --line: rgba(242,239,247,0.12);
+      --ink: #f2effa;
+      --ink-dim: #9a94ad;
+      --magenta: #ff2ec4;
+      --cyan: #1de9d6;
+      --violet: #8a5bff;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--bg);
+      color: var(--ink);
+      font-family: 'Manrope', sans-serif;
+      line-height: 1.5;
+      overflow-x: hidden;
+    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 28px; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(10, 9, 18, 0.78);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 76px;
+      gap: 18px;
+    }
+
+    .logo {
+      font-family: 'Unbounded', sans-serif;
+      font-weight: 800;
+      font-size: 22px;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo-img {
+      height: 64px;
+      width: auto;
+      display: block;
+    }
+
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 11px 18px;
+      font-size: 13px;
+      color: var(--ink);
+      transition: border-color .2s ease, transform .2s ease;
+    }
+
+    .back-link:hover {
+      border-color: var(--magenta);
+      transform: translateY(-2px);
+    }
+
+    main {
+      padding: 80px 0 90px;
+    }
+
+    .event-header {
+      margin-bottom: 36px;
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .eyebrow {
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--ink-dim);
+      margin-bottom: 14px;
+    }
+
+    .event-title {
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(32px, 6vw, 64px);
+      line-height: 0.96;
+      letter-spacing: -0.04em;
+      margin-bottom: 14px;
+    }
+
+    .event-date {
+      color: var(--magenta);
+      font-weight: 700;
+      font-size: 16px;
+      margin-bottom: 12px;
+    }
+
+    .event-description {
+      max-width: 700px;
+      color: var(--ink-dim);
+      font-size: 17px;
+    }
+
+    .media-section {
+      margin-top: 46px;
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-heading h2 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(20px, 2.5vw, 32px);
+      font-weight: 700;
+    }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      border: 1px solid var(--line);
+      background: var(--bg-soft);
+      min-height: 260px;
+    }
+
+    .gallery-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .video-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .video-card {
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      overflow: hidden;
+      background: var(--bg-soft);
+    }
+
+    .video-card video {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      display: block;
+      background: #000;
+      object-fit: cover;
+    }
+
+    .video-label {
+      padding: 12px 14px 16px;
+      font-size: 14px;
+      color: var(--ink-dim);
+      border-top: 1px solid var(--line);
+    }
+
+    .empty-box {
+      border: 1px dashed var(--line);
+      border-radius: 18px;
+      padding: 28px 18px;
+      color: var(--ink-dim);
+      font-size: 15px;
+      background: rgba(255,255,255,0.01);
+    }
+
+    @media (max-width: 820px) {
+      .gallery-grid, .video-list {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap nav">
+      <a href="DRIPARTYSVB.html" class="logo" aria-label="Вернуться на главную">
+        <img class="logo-img" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAArwAAAC4CAYAAAABtD98AAEAAElEQVR42ux9d3gc1fX2uXdm+0qr3i3Jsiz3hnABd2MwGEyNTTEpEAJfSCB0foQiKZBQQoBQUkiAEGOKTTU2NsaAjQu2sdx7V+91tX1m7veH7l3ujmZ2V7ZcIHueR4+k3dmdue3c97zn3HMAYhKTmMQkJjGJSUxiEpOYxCQmMYlJTGISk5jEJCYxiUlMYhKTmMQkJjGJSUxiEpOYxCQmMYlJTGISk5jEJCYxiUlMYhKTmMQkJjGJSUxiEpOYxCQmMYlJTGISk5jEJCYxiUlMYhKTmMQkJjGJSUxiEpOYxCQmMfnxCop1QUxiEpOYxCQmMTmDOIOc4WcgsWGKTcSYxCQmMYlJTGISEwQAQEg3NsQYE/7/H22jUTdMUhQFqV+LAeUY4I1JTGISk5jEJCY/MBDLgOxJgFgBAHBhYSF2OBzCkCFDkNFoxDabDWGMscViQQ6HA+g9MfuQ0WhEAAA+nw8BANjtdgAAMBgMyGQyEZ/PhwKBAOE/oxaj0UgAANra2ggAAPucyWQiJpOJOJ1O8Pl8xGw2E6/XS7xeL3G73cTlchGn00mOHj2qNDc3KxUVFQoASACgnAg41gDGMVAcA7wxiUlMYhKTmMTkVO7xavDaS0CLAUCYMGGCeM455wgGg0HMzc3FFotFdDqdIiFERAhZMMbxVqs10Ww2p5lMpiSj0ZhgMpkcAGAVRdFiMBhEo9FoMhgMBowxFgQBC4KAMcYMcGNBEAAhROgzIoQQIIQwIUQhhGCEkIIQCg+87HVFUQBjzF5TAABkWQaMMZFlmSCESCAQAEKIEggEiKIociAQkGRZDvh8Pi8hxOf1erskSeqSZbnd7XbXd3Z2NhJCWtxud1dKSopXlmXZ4/EoXV1dCgBIVVVV8o4dO+Ty8nIJAAKRgG0MDMcAb0xiEpOYxCQmMekDQNvLMAOxuLjYWFxcbMjPzxdFUTRgjA0AYAEAW1xcXLLVas0QRTHZarWm2Gy2JIPBEGexWOJNJpNVFEURY2wwmUxmo9FoEUXRJoqiVRAEE8bYJIqiiBASjUYjAAAIgnBWdiAhBPx+P5EkSZZlWVYUxStJkleSJKff73f5fD63LMsBRVFkqVv8Xq/X5fP5Otxud6vX621yOp3H29rajsmy3Ga32/0ej0dpamqSKisrfQsXLvQBgF8P3MaAcAzwxiQmMYlJTGISkxMPOxBHjhxpGjNmjCE/P98YHx9vwBgbjEajBWOcHhcXNzA+Pr6/xWLJsNlsSWazOc5sNhsMBoPFaDSazWazzWAw2AVBMIuiaBAEwWg0GjEXv6qLIemPwmEMxEAcBXcEYwyyLCsAgLXAsKIoIRgFY0x4YMjdK+Q1BvplWSaCICB2T/Y6uz+7De6mhpGqvyM2UlEU8Pv9/kAgEPD5fJ1ut7vZ4/G4FEXx+/3+gM/nc3d2dtZ2dHRUeDyeI+3t7UcJIS0IIV9nZ2dg06ZN3iVLlnigO3wiBoRjgDcmMYlJTGISk/+N/fgEwg+Mc+fOtQwdOtSUkJBgFQTBbLFYbIIgpJhMpnyHw5Frt9vT7XZ7sslkSjQajQaDwWC2WCzxFoslWRRFuyAIotlsRmHAKwAAURQFCCGAEOJBJQAACIKAGDjDGAMhBCGEgtdrgEUGNFm4QrhrNIGtxjW614U0iBAghCgYY8w+z/qYhVQoisJAO6JAGzDGDIQH/6a3xnr39Pl8RJIkbyAQ6Ozq6mrxer2dfr/f43a7na2trRWtra27Ozs793q93joA8BFCAitWrPCsWLHCA91hErogOAaAY4A3JjGJSUxiEpMfFLBlQEtHDOeff755+PDhptzcXFNcXJxZEIQ4g8GQnZiYWBgXFzfIZrNlJyQkJFmtVitjZ00mk0MURbPBYDAZDAakA2YZmCO" alt="DRIP PARTY logo" class="logo-img" />
+        <span>DRIP PARTY</span>
+      </a>
+      <a href="DRIPARTYSVB.html" class="back-link">← Назад на главную</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="wrap">
+      <section class="event-header">
+        <p class="eyebrow">Архив вечеринок</p>
+        <h1 class="event-title" id="event-title">Загрузка...</h1>
+        <div class="event-date" id="event-date"></div>
+        <p class="event-description" id="event-description"></p>
+      </section>
+
+      <section class="media-section">
+        <div class="section-heading">
+          <h2>Фото</h2>
+        </div>
+        <div class="gallery-grid" id="gallery-grid"></div>
+      </section>
+
+      <section class="media-section">
+        <div class="section-heading">
+          <h2>Видео</h2>
+        </div>
+        <div class="video-list" id="video-list"></div>
+      </section>
+    </div>
+  </main>
+
+  <script>
+    const events = {
+      'last-day-of-summer': {
+        title: 'Последний день лета',
+        date: '30 августа',
+        description: 'Открытая летняя вечеринка с жаркими сетами, дымом, ярким светом и тёплым ночным вайбом по берегу и в центре города.',
+        gallery: [
+          { src: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=900&q=80', alt: 'Площадка вечеринки' },
+          { src: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=900&q=80', alt: 'Танцпол и свет' },
+          { src: 'https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=900&q=80', alt: 'Люди на вечеринке' }
+        ],
+        videos: [
+          { title: 'Короткий клип с площадки', src: 'https://www.w3schools.com/html/mov_bbb.mp4', poster: 'https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1200&q=80' },
+          { title: 'Сет на открытом воздухе', src: 'https://www.w3schools.com/html/movie.mp4', poster: 'https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1200&q=80' }
+        ]
+      },
+      'summer-vibes': {
+        title: 'Summer Vibes',
+        date: '5 июня',
+        description: 'Летняя волна с музыкальной программой, лёгкой атмосферой и вечерним настроением, где было много красных световых акцентов и открытых танцев.',
+        gallery: [
+          { src: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=900&q=80', alt: 'Summer Vibes crowd' },
+          { src: 'https://images.unsplash.com/photo-1533174072545-7a4b6ad7a6c3?auto=format&fit=crop&w=900&q=80', alt: 'Люди и музыка' },
+          { src: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=900&q=80', alt: 'Летняя сцена' }
+        ],
+        videos: [
+          { title: 'Летний вайб', src: 'https://www.w3schools.com/html/mov_bbb.mp4', poster: 'https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1200&q=80' }
+        ]
+      },
+      'tinder-party': {
+        title: 'Tinder Party',
+        date: '1 мая',
+        description: 'Праздничная вечеринка с яркими световыми решениями, энергетическим саундом и большим залом для танцев до поздней ночи.',
+        gallery: [
+          { src: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=900&q=80', alt: 'Праздничная площадка' },
+          { src: 'https://images.unsplash.com/photo-1507874457470-272b3c8d8ee2?auto=format&fit=crop&w=900&q=80', alt: 'Сцена и публика' },
+          { src: 'https://images.unsplash.com/photo-1501612780327-45045538702b?auto=format&fit=crop&w=900&q=80', alt: 'Вечерний свет' }
+        ],
+        videos: [
+          { title: 'Вечернее открытие', src: 'https://www.w3schools.com/html/movie.mp4', poster: 'https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1200&q=80' }
+        ]
+      }
+    };
+
+    const params = new URLSearchParams(window.location.search);
+    const eventKey = params.get('event') || 'last-day-of-summer';
+    const event = events[eventKey] || events['last-day-of-summer'];
+
+    document.getElementById('event-title').textContent = event.title;
+    document.getElementById('event-date').textContent = event.date;
+    document.getElementById('event-description').textContent = event.description;
+
+    const galleryGrid = document.getElementById('gallery-grid');
+    const videoList = document.getElementById('video-list');
+
+    galleryGrid.innerHTML = event.gallery.map(item => `
+      <div class="gallery-item">
+        <img src="${item.src}" alt="${item.alt}" />
+      </div>
+    `).join('');
+
+    if (event.videos.length) {
+      videoList.innerHTML = event.videos.map(video => `
+        <div class="video-card">
+          <video controls preload="metadata" poster="${video.poster || event.gallery[0].src}">
+            <source src="${video.src}" type="video/mp4" />
+            Ваш браузер не поддерживает видео.
+          </video>
+          <div class="video-label">${video.title}</div>
+        </div>
+      `).join('');
+    } else {
+      videoList.innerHTML = '<div class="empty-box">Видео пока не добавлено. Сюда можно загрузить ролик после публикации.</div>';
+    }
+  </script>
+</body>
+</html>
